@@ -267,3 +267,59 @@ footer ul {
 	float: right;
 	text-align: right;
 }
+
+/******** RESPONSIVE LAYOUT ********/
+@media only screen and (max-width: 1235px) {
+	h1 {
+		margin-top: -10px;
+	}
+
+}
+@media only screen and (max-width: 767px) {
+	.center-all {
+		max-width: 90%;
+	}
+	.header {
+		height: auto;
+	}
+	.header .col-2 {
+		width: 100%;
+	}
+	.header .col-10 {
+		width: 100%;
+	}
+	.header img {
+		width: 19%;
+		margin: 0 auto;
+	}
+	h1 {
+		font-size: 38px;
+	}
+	footer .col,
+	form .col {
+		width: 100%;
+		margin-bottom: 10px;
+	}
+	footer .col:first-of-type {
+		display: none;
+	}
+	.body .wrapper .wrap-input,
+	.beard .wrapper .wrap-input,
+	.hair .wrapper .wrap-input {
+		display: block;
+		float: left;
+		width: 24.4%;
+		border-top: 1px solid #e8972c;
+		border-bottom: 1px solid #e8972c;
+		border-left:1px solid #e8972c;
+	}
+	.body .wrapper .wrap-input {
+		width: 32.9%;
+	}
+}
+
+@media only screen and (max-width: 524px) {
+	h1 {
+		font-size: 26px;
+	}
+}
