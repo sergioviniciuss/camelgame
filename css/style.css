@@ -136,15 +136,19 @@ form .row {
 .wrapper input[type="radio"] {
 	display: none;
 }
+.beard input[type='radio']:checked + label,
+.beard input[type='radio'] + label:hover,
 .hair input[type='radio']:checked + label,
 .hair input[type='radio'] + label:hover{
 	color: #fff;
 	background-color: #e8972c;
 }
+.beard .wrapper,
 .hair .wrapper {
 	display: block;
 	width: 100%;
 }
+.beard .wrapper .wrap-input,
 .hair .wrapper .wrap-input {
 	display: block;
 	float: left;
@@ -153,15 +157,18 @@ form .row {
 	border-bottom: 1px solid #e8972c;
 	border-left:1px solid #e8972c;
 }
+.beard .wrapper .wrap-input:first-of-type,
 .hair .wrapper .wrap-input:first-of-type {
 	border-top-left-radius: 4px;
 	border-bottom-left-radius: 4px;
 }
+.beard .wrapper .wrap-input:last-child,
 .hair .wrapper .wrap-input:last-child {
 	border-right:1px solid #e8972c;
 	border-top-right-radius: 4px;
 	border-bottom-right-radius: 4px;
 }
+.beard .wrapper label,
 .hair .wrapper label {
 	display: block;
 	padding: 10px;
@@ -181,4 +188,9 @@ form .row {
 .eye .wrap-input {
 	display: inline-block;
 	padding-left: 15px;
+}
+.beard img {
+	width: 60%;
+	display: block;
+	margin: 0 auto;
 }
