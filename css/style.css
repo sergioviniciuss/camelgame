@@ -15,7 +15,7 @@
     max-width: 80%;
     margin: 0 auto;
 }
-
+select,
 input[type="range"] {
 	width: 100%;
 }
@@ -61,6 +61,12 @@ input[type=range]:focus {
 }
 input[type=range]:focus::-webkit-slider-runnable-track {
 	background: #ccc;
+}
+select {
+	height: 38px;
+	font-size: 15px;
+	background-color: #ffffff;
+	border: 1px solid #d1d1d1;
 }
 /******** GRID ********/
 
