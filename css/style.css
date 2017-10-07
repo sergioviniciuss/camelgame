@@ -133,3 +133,43 @@ main {
 form .row {
 	border-bottom: 1px solid #e7e7e7;
 }
+.wrapper input[type="radio"] {
+	display: none;
+}
+.hair input[type='radio']:checked + label,
+.hair input[type='radio'] + label:hover{
+	color: #fff;
+	background-color: #e8972c;
+}
+.hair .wrapper {
+	display: block;
+	width: 100%;
+}
+.hair .wrapper .wrap-input {
+	display: block;
+	float: left;
+	width: 24.6%;
+	border-top: 1px solid #e8972c;
+	border-bottom: 1px solid #e8972c;
+	border-left:1px solid #e8972c;
+}
+.hair .wrapper .wrap-input:first-of-type {
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+.hair .wrapper .wrap-input:last-child {
+	border-right:1px solid #e8972c;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+.hair .wrapper label {
+	display: block;
+	padding: 10px;
+	font: 600 12px/12px Helvetica;
+	color: #e8972c;
+	width: 100%;
+	cursor: pointer;
+	float: left;
+	box-sizing: border-box;
+	text-align: center;
+}
