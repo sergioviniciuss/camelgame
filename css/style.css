@@ -96,7 +96,6 @@ select {
     width: 83.33%;
 }
 
-
 /******** Main Customs ********/
 .header {
     background: url('../images/header-bg.jpg') top center no-repeat;
@@ -229,4 +228,39 @@ form .row {
 }
 .btn:hover {
 	background-color: #d28115;
+}
+
+.institutional a {
+	color: #d4d4d4;
+	font-size: 10px;
+	text-decoration: none;
+	display: inline-block;
+	width: 100%;
+}
+.institutional a:hover {
+	color: #666666;
+	transition: all 700ms;
+}
+footer .row {
+	padding: 10px 0 0 0;
+}
+footer ul {
+	list-style-type: none;
+	display: inline-block;
+}
+.institutional {
+	float: left;
+	padding: 0 2px;
+	color: #d4d4d4;
+	
+}
+.mr-nerd {
+	background: url('../images/mrnerd.png') top right no-repeat;
+	padding: 0 0 8px 0;
+	width: 85px;
+	text-align: left;
+}
+.right-align {
+	float: right;
+	text-align: right;
 }
