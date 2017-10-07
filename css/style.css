@@ -16,6 +16,52 @@
     margin: 0 auto;
 }
 
+input[type="range"] {
+	width: 100%;
+}
+input[type=range]{
+	-webkit-appearance: none;
+	/* fix for FF unable to apply focus style bug  */
+	border: 1px solid white; 
+}
+input[type=range]::-webkit-slider-runnable-track {
+	height: 10px;
+	background: #dddddd;
+	border: none;
+	border-radius: 3px;
+}
+input[type=range]::-moz-range-track {
+	height: 10px;
+	background: #dddddd;
+	border: none;
+	border-radius: 3px;
+}
+input[type=range]::-ms-fill-lower {
+	background: #e8972c;
+	border-radius: 10px;
+}
+input[type=range]::-ms-fill-upper {
+	background: #dddddd;
+	border-radius: 10px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	border: none;
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+	background: #ffffff;
+	margin-top: -11px;
+	background-image: linear-gradient(rgba(255,255,255,0),rgba(0,0,0,0.1));
+	box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
+input[type=range]:focus {
+	outline: none;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+	background: #ccc;
+}
 /******** GRID ********/
 
 .row {
@@ -30,6 +76,12 @@
 }
 .col-2 {
     width: 16.66%;
+}
+.col-4 {
+	width: 33.32%;
+}
+.col-8 {
+	width: 66.44%;
 }
 .col-10 {
     width: 83.33%;
@@ -55,4 +107,23 @@
 h1 {
     font-size: 46px;
     margin-top: 10px;
+}
+main {
+	margin-top: 10px;
+}
+.label {
+	font-size: 20px;
+	text-align: left;
+	float: left;
+	display: block;
+}
+.output {
+	font-size: 20px;
+	text-align: right;
+	float: right;
+	display: block;
+	padding-right: 20px;
+}
+form .row {
+	border-bottom: 1px solid #e7e7e7;
 }
