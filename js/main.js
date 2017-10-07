@@ -7,4 +7,13 @@
             ageResult.textContent = element.target.value;
         }
     })
+
+    var height = document.querySelector('#height');
+    var heightResult = document.querySelector('#height-result');
+    heightResult.textContent = height.value;
+    height.addEventListener('input', function(element) {
+        if (element.target.tagName === 'INPUT') {
+            heightResult.textContent = element.target.value;
+        }
+    })
 })();
