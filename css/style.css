@@ -2,7 +2,10 @@
 * {
     margin: 0;
 }
-
+a,
+a:visited  {
+	text-decoration: none;
+}
 /******** GENERAL ********/
 .full-width {
     position: relative;
@@ -204,4 +207,26 @@ form .row {
 }
 .body .wrapper .wrap-input {
 	width: 33%;
+}
+.calculate {
+	display: flex;
+	justify-content: center;
+}
+.btn {
+	display: block;
+	margin: 0 auto 40px;
+	height: 48px;
+	line-height: 48px;
+	color: #ffffff;
+	background-color: #e8972c;
+	border-radius: 4px;
+	text-decoration: none;
+	text-align: center;
+	text-transform: uppercase;
+	padding: 0 30px;
+	box-sizing: border-box;
+	letter-spacing: 1px;
+}
+.btn:hover {
+	background-color: #d28115;
 }
