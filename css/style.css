@@ -1,0 +1,58 @@
+/******** RESET ********/
+* {
+    margin: 0;
+}
+
+/******** GENERAL ********/
+.full-width {
+    position: relative;
+    display: block;
+    float: left;
+    width: 100%;
+}
+.center-all {
+    display: block;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+/******** GRID ********/
+
+.row {
+    width: 100%;
+    display: block;
+    float: left;
+    padding: 20px 0;
+}
+.col {
+    float: left;
+    display: block;
+}
+.col-2 {
+    width: 16.66%;
+}
+.col-10 {
+    width: 83.33%;
+}
+
+
+/******** Main Customs ********/
+.header {
+    background: url('../images/header-bg.jpg') top center no-repeat;
+    width: 100%;
+    display: block;
+    height: 140px;
+}
+.logo {
+    display: block;
+    width: 71%;
+    margin: 0 auto;
+}
+.logo img {
+	display: block;
+	width: 100%;
+}
+h1 {
+    font-size: 46px;
+    margin-top: 10px;
+}
