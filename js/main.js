@@ -1,4 +1,12 @@
 (function() {
+    var WEIGHT = {
+        light: 1,
+        medium: 2,
+        heavy: 4
+    }
+    /**
+     * Returns an array of all fields inside the form
+     */
     function getFormFields() {
         var fields = [
             document.querySelector('#age'),
@@ -11,73 +19,86 @@
         ]
         return fields;
     }
-    var weight = {
-        light: 1,
-        medium: 2,
-        heavy: 4
+    /**
+     * Receives the id of input and the one where
+     * you want to print the output and update the value dynamically
+     * in this output.
+     * @param {string} idFieldListener 
+     * @param {string} idFieldListenerResult 
+     */
+    function updateRangeValuesDynamically(idFieldListener, idFieldListenerResult) {
+        var fieldListener = document.querySelector(idFieldListener);
+        var fieldListenerResult = document.querySelector(idFieldListenerResult);
+        fieldListenerResult.textContent = fieldListener.value;
+        fieldListener.addEventListener('input', function(event) {
+            var value = (event.target.value - event.target.min) / (event.target.max - event.target.min);
+            event.target.background = '-webkit-gradient(linear, left top, right top, '
+                                                    + 'from(#e8972c),'
+                                                    + 'color-stop(' + value + ', #e8972c), '
+                                                    + 'color-stop(' + value + ', #e6e6e6) '
+                                                    + ')';
+            if (event.target.tagName === 'INPUT') {
+                fieldListenerResult.textContent = event.target.value;
+            }
+        })
     }
-    var age = document.querySelector('#age');
-    var ageResult = document.querySelector('#age-result');
-    ageResult.textContent = age.value;
-    age.addEventListener('change', function(event) {
-        var value = (event.target.value - event.target.min) / (event.target.max - event.target.min);
-        this.style.backgroundImage = '-webkit-gradient(linear, left top, right, top, '
-                                                + 'color-stop(' + value + ', #e8972c), '
-                                                + 'color-stop(' + value + ', #e6e6e6) '
-                                                + ')';
-        if (event.target.tagName === 'INPUT') {
-            ageResult.textContent = event.target.value;
-        }
-    })
-
-    var height = document.querySelector('#height');
-    var heightResult = document.querySelector('#height-result');
-    heightResult.textContent = height.value;
-    height.addEventListener('input', function(event) {
-        if (event.target.tagName === 'INPUT') {
-            heightResult.textContent = event.target.value;
-        }
-    })
-
-    var calculateButton = document.querySelector('#calculate-btn');
-    calculateButton.addEventListener('click', function(event) {
-        event.preventDefault();
-        var calculatedWeight = 1;
-        var fields = getFormFields();
-        var resultDiv = document.querySelector('#result');
-        var resultOutput = document.querySelector('#result-value');
-        var form = document.querySelector('.form');
-        for (var i = 0; i < fields.length; i++) {
-            if (fields[i].type === 'radio') {
-                calculatedWeight = (calculatedWeight * getWeight(fields[i].name, fields[i].value));
-            } else {
-                calculatedWeight = (calculatedWeight * getWeight(fields[i].id, fields[i].value));
+   /**
+    * Calculates how many camels a person worths based on the weights
+    * each form field gets by multiplying these weights
+    */
+    function calculateCamels() {
+        var calculateButton = document.querySelector('#calculate-btn');
+        calculateButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            var calculatedWeight = 1;
+            var fields = getFormFields();
+            var resultDiv = document.querySelector('#result');
+            var resultOutput = document.querySelector('#result-value');
+            var form = document.querySelector('.form');
+            for (var i = 0; i < fields.length; i++) {
+                if (fields[i].type === 'radio') {
+                    calculatedWeight = (calculatedWeight * getWeight(fields[i].name, fields[i].value));
+                } else {
+                    calculatedWeight = (calculatedWeight * getWeight(fields[i].id, fields[i].value));
+                }
             }
-        }
-        if (!!resultDiv.getAttribute('class', 'hide')) {
-            resultDiv.setAttribute('class', '');
-        }
-        form.setAttribute('class','hide');
-        var counter = 0;
-        console.log("Final Result", calculatedWeight);
-        var animation = setInterval(function() {
-            counter = counter + 1;
-            resultOutput.textContent = counter;
-            if (counter >= calculatedWeight) {
-                clearInterval(animation);
+            if (!!resultDiv.getAttribute('class', 'hide')) {
+                resultDiv.setAttribute('class', '');
             }
-        }, 60);
-    })
-    var resetButton = document.querySelector('#reset-btn');
-    resetButton.addEventListener('click', function(event) {
-        var resultDiv = document.querySelector('#result');
-        var form = document.querySelector('#camel-form');
-        var resultOutput = document.querySelector('#result-value');
-        form.setAttribute('class', 'form');
-        resultDiv.setAttribute('class', 'hide');
-        resultOutput.textContent = '';
-    });
+            form.setAttribute('class','hide');
+            var counter = 0;
+            var animation = setInterval(function() {
+                counter = counter + 1;
+                resultOutput.textContent = counter;
+                if (counter >= calculatedWeight) {
+                    clearInterval(animation);
+                }
+            }, 60);
+        })
+    }
+    
+    /**
+     * Hides the result block and display the form
+     * so that user can play again.
+     * 
+     */
+    function resetForm() {
+        var resetButton = document.querySelector('#reset-btn');
+        resetButton.addEventListener('click', function(event) {
+            var resultDiv = document.querySelector('#result');
+            var form = document.querySelector('#camel-form');
+            var resultOutput = document.querySelector('#result-value');
+            form.setAttribute('class', 'form');
+            resultDiv.setAttribute('class', 'hide');
+            resultOutput.textContent = '';
+        });
+    }
 
+    /**
+     * Returns weight based on formField and value
+     * @param {string} fieldId 
+     * @param {*} fieldValue 
+     */
     function getWeight(fieldId, fieldValue) {
         var weight = 0;
         switch (fieldId) {
@@ -107,112 +128,120 @@
     }
 
     /**
-     * Return a weight based on Age value
+     * Returns a weight based on Age value
      * @param {int} value 
      */
     function getAgeWeightByValue(value) {
-        var result = weight.light;
+        var result = WEIGHT.light;
         if (value < 34) {
-            result = weight.light;
+            result = WEIGHT.light;
         } else if (value >= 34 && value < 48) {
-            result = weight.medium;
+            result = WEIGHT.medium;
         } else if (value >= 48) {
-            result = weight.heavy;
+            result = WEIGHT.heavy;
         }
         return result;
     }
     /**
-     * Return a weight based on Height value
+     * Returns a weight based on Height value
      * @param {int} value 
      */
     function getHeightWeightByValue(value) {
-        var result = weight.light;
+        var result = WEIGHT.light;
         if (value < 166) {
-            result = weight.light;
+            result = WEIGHT.light;
         } else if (value >= 167 && value < 192) {
-            result = weight.medium;
+            result = WEIGHT.medium;
         } else if (value >= 192) {
-            result = weight.heavy;
+            result = WEIGHT.heavy;
         }
         return result;
     }
     /**
-     * Return a weight based on Hair Color value
-     * @param {int} value 
+     * Returns a weight based on Hair Color value
+     * @param {string} value 
      */
     function getHairColorWeightByValue(value) {
-        var result = weight.light;
+        var result = WEIGHT.light;
         if (value === 'blonde') {
-            result = weight.light;
+            result = WEIGHT.light;
         } else if (value === 'brown' || value === 'black') {
-            result = weight.medium;
+            result = WEIGHT.medium;
         } else if (value === 'red' || value === 'grey') {
-            result = weight.heavy;
+            result = WEIGHT.heavy;
         }
         return result;
     }
 
     /**
-     * Return a weight based on Hair Lenght value
-     * @param {int} value 
+     * Returns a weight based on Hair Lenght value
+     * @param {string} value 
      */
     function getHairLengthWeightByValue(value) {
-        var result = weight.light;
+        var result = WEIGHT.light;
         if (value === 'long') {
-            result = weight.light;
+            result = WEIGHT.light;
         } else if (value === 'middle' || value === 'bald') {
-            result = weight.medium;
+            result = WEIGHT.medium;
         } else if (value === 'short') {
-            result = weight.heavy;
+            result = WEIGHT.heavy;
         }
         return result;
     }
 
     /**
-     * Return a weight based on Eye Color value
-     * @param {int} value 
+     * Returns a weight based on Eye Color value
+     * @param {string} value 
      */
     function getEyeWeightByValue(value) {
-        var result = weight.light;
+        var result = WEIGHT.light;
         if (value === 'brown') {
-            result = weight.light;
+            result = WEIGHT.light;
         } else if (value === 'green' || value === 'grey') {
-            result = weight.medium;
+            result = WEIGHT.medium;
         } else if (value === 'blue') {
-            result = weight.heavy;
+            result = WEIGHT.heavy;
         }
         return result;
     }
 
     /**
-     * Return a weight based on Beard value
-     * @param {int} value 
+     * Returns a weight based on Beard value
+     * @param {string} value 
      */
     function getBeardWeightByValue(value) {
-        var result = weight.light;
+        var result = WEIGHT.light;
         if (value === 'shaved') {
-            result = weight.light;
+            result = WEIGHT.light;
         } else if (value === 'mustache' || value === 'goatee') {
-            result = weight.medium;
+            result = WEIGHT.medium;
         } else if (value === 'fullbeard') {
-            result = weight.heavy;
+            result = WEIGHT.heavy;
         }
         return result;
     }
 
     /**
-     * Return a weight based on Body value
-     * @param {int} value 
+     * Returns a weight based on Body value
+     * @param {string} value 
      */
     function getBodyWeightByValue(value) {
-        var result = weight.light;
+        var result = WEIGHT.light;
         if (value === 'strong') {
-            result = weight.light;
+            result = WEIGHT.light;
         } else if (value === 'thin') {
-            result = weight.medium;
+            result = WEIGHT.medium;
         } else if (value === 'fat') {
-            result = weight.heavy;
+            result = WEIGHT.heavy;
         }
         return result;
     }
+
+    function init() {
+        updateRangeValuesDynamically('#age','#age-result');
+        updateRangeValuesDynamically('#height','#height-result');
+        calculateCamels();
+        resetForm();
+    }
+    init();
 })();
