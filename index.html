@@ -24,7 +24,7 @@
 		</header>
 		<main class="full-width">
 			<div class="center-all">
-				<form action="">
+				<form id="camel-form" class="form">
 					<div class="row row-form">
 						<div class="col col-4">
 							<span class="label">Age</span>
@@ -48,7 +48,7 @@
 							<span class="label">Hair Color</span>
 						</div>
 						<div class="col col-8">
-							<select name="haircolor" class="select">
+							<select id="haircolor" name="haircolor" class="select">
 								<option value="blonde">Blonde</option>
 								<option value="brown">Brown</option>
 								<option value="black">Black</option>
@@ -184,11 +184,24 @@
 						</div>
 					</div>
 					<div class="row calculate">
+						<!-- <input type="button" id="calculate-btn" class="btn" value="Calculate"> -->
 						<a id="calculate-btn" class="btn" href="#">
 							Calculate
 						</a>
 					</div>
 				</form>
+				<div id="result" class="hide">
+					<div class="row">
+						Your boyfriend is worth
+						<span id="result-value"></span>
+						camels.
+					</div>
+					<div class="row calculate">
+						<a id="reset-btn" class="btn" href="#">
+							Calculate again?
+						</a>
+					</div>
+				</div>
 			</div>
 		</main>
 		<footer class="full-width">

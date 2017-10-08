@@ -267,7 +267,21 @@ footer ul {
 	float: right;
 	text-align: right;
 }
-
+.hide {
+	display: none;
+}
+#result .row{
+	text-align: center;
+	font-size: 30px;
+}
+#result-value {
+	display: block;
+	font-size: 48px;
+	font-weight: bold;
+}
+footer .row{
+	border-top: 1px solid #dedede;
+}
 /******** RESPONSIVE LAYOUT ********/
 @media only screen and (max-width: 1235px) {
 	h1 {
